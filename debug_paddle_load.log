@@ -1,0 +1,165 @@
+[2025-12-23 10:23:02] === debug_paddle_load START ===
+[2025-12-23 10:23:02] Python executable: C:\Users\GuoZhe\.conda\envs\ptToonnx\python.exe
+[2025-12-23 10:23:02] Python version: 3.9.21 (main, Dec 11 2024, 16:35:24) [MSC v.1929 64 bit (AMD64)]
+[2025-12-23 10:23:02] Current working dir: E:\programingCodeFile\DeepLearninng\homework1222
+[2025-12-23 10:23:02] CONDA_PREFIX (detected): C:\Users\GuoZhe\.conda\envs\ptToonnx
+[2025-12-23 10:23:02] Added DLL directory: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin
+[2025-12-23 10:23:02] Added DLL directory: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cuda_runtime\bin
+[2025-12-23 10:23:02] Added DLL directory: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cublas\bin
+[2025-12-23 10:23:02] Added DLL directory: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\nvjitlink\bin
+[2025-12-23 10:23:02] Added DLL directory: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin
+[2025-12-23 10:23:02] Found 20 DLLs to test under candidate dirs.
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn64_9.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_adv64_9.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_cnn64_9.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_engines_precompiled64_9.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_engines_runtime_compiled64_9.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_graph64_9.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_heuristic64_9.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_ops64_9.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cuda_runtime\bin\cudart64_12.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cublas\bin\cublas64_12.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cublas\bin\cublasLt64_12.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cublas\bin\nvblas64_12.dll
+[2025-12-23 10:23:02]  - C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\nvjitlink\bin\nvJitLink_120_0.dll
+[2025-12-23 10:23:02]  - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn64_8.dll
+[2025-12-23 10:23:02]  - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_adv_infer64_8.dll
+[2025-12-23 10:23:02]  - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_adv_train64_8.dll
+[2025-12-23 10:23:02]  - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_cnn_infer64_8.dll
+[2025-12-23 10:23:02]  - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_cnn_train64_8.dll
+[2025-12-23 10:23:02]  - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_ops_infer64_8.dll
+[2025-12-23 10:23:02]  - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_ops_train64_8.dll
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn64_9.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn64_9.dll (handle: -2019229696)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_adv64_9.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_adv64_9.dll (handle: 1738997760)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_cnn64_9.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_cnn64_9.dll (handle: 1734934528)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_engines_precompiled64_9.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_engines_precompiled64_9.dll (handle: 686882816)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_engines_runtime_compiled64_9.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_engines_runtime_compiled64_9.dll (handle: 668729344)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_graph64_9.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_graph64_9.dll (handle: -2086600704)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_heuristic64_9.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_heuristic64_9.dll (handle: 620625920)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_ops64_9.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cudnn\bin\cudnn_ops64_9.dll (handle: 1114046464)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cuda_runtime\bin\cudart64_12.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cuda_runtime\bin\cudart64_12.dll (handle: -2027225088)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cublas\bin\cublas64_12.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cublas\bin\cublas64_12.dll (handle: 515637248)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cublas\bin\cublasLt64_12.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cublas\bin\cublasLt64_12.dll (handle: -192348160)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cublas\bin\nvblas64_12.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\cublas\bin\nvblas64_12.dll (handle: -2025783296)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\nvjitlink\bin\nvJitLink_120_0.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\nvidia\nvjitlink\bin\nvJitLink_120_0.dll (handle: -280494080)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn64_8.dll
+[2025-12-23 10:23:02] LoadLibraryExW SUCCESS: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn64_8.dll (handle: -2032861184)
+[2025-12-23 10:23:02] --------------------------------------------------------------------------------
+[2025-12-23 10:23:02] Attempt loading: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_adv_infer64_8.dll
+[2025-12-23 10:23:03] LoadLibraryExW SUCCESS: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_adv_infer64_8.dll (handle: -406192128)
+[2025-12-23 10:23:03] --------------------------------------------------------------------------------
+[2025-12-23 10:23:03] Attempt loading: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_adv_train64_8.dll
+[2025-12-23 10:23:03] LoadLibraryExW SUCCESS: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_adv_train64_8.dll (handle: -613548032)
+[2025-12-23 10:23:03] --------------------------------------------------------------------------------
+[2025-12-23 10:23:03] Attempt loading: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_cnn_infer64_8.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_cnn_infer64_8.dll (handle: -1748631552)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_cnn_train64_8.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_cnn_train64_8.dll (handle: -806682624)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_ops_infer64_8.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_ops_infer64_8.dll (handle: -496238592)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_ops_train64_8.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin\cudnn_ops_train64_8.dll (handle: -683999232)
+[2025-12-23 10:23:04] Scanning paddle package directory for extensions: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle
+[2025-12-23 10:23:04] Found 13 paddle extension files (.pyd/.dll).
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\base\libpaddle.pyd
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\common.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libblas.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libgcc_s_seh-1.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libgfortran-3.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libiomp5md.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\liblapack.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libquadmath-0.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\mkldnn.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\mklml.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\phi.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\warpctc.dll
+[2025-12-23 10:23:04] Paddle ext candidate: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\warprnnt.dll
+[2025-12-23 10:23:04] Attempting to load paddle extension binaries directly...
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\base\libpaddle.pyd
+[2025-12-23 10:23:04] LoadLibraryExW returned NULL, last_error=0
+[2025-12-23 10:23:04] LoadLibraryW returned NULL, last_error=0
+[2025-12-23 10:23:04] CTypes WinError for C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\base\libpaddle.pyd: [WinError 0] 操作成功完成。
+Traceback (most recent call last):
+  File "E:\programingCodeFile\DeepLearninng\homework1222\debug_paddle_load.py", line 91, in try_load_dlls
+    raise ctypes.WinError(last_error2)
+OSError: [WinError 0] 操作成功完成。
+
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\common.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\common.dll (handle: -2082996224)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libblas.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libblas.dll (handle: 1747714048)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libgcc_s_seh-1.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libgcc_s_seh-1.dll (handle: 1631846400)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libgfortran-3.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libgfortran-3.dll (handle: 1868562432)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libiomp5md.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libiomp5md.dll (handle: 1729167360)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\liblapack.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\liblapack.dll (handle: 1830813696)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libquadmath-0.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\libquadmath-0.dll (handle: 1827667968)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\mkldnn.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\mkldnn.dll (handle: 468189184)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\mklml.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\mklml.dll (handle: -899481600)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\phi.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\phi.dll (handle: 1900085248)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\warpctc.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\warpctc.dll (handle: -2131689472)
+[2025-12-23 10:23:04] --------------------------------------------------------------------------------
+[2025-12-23 10:23:04] Attempt loading: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\warprnnt.dll
+[2025-12-23 10:23:04] LoadLibraryExW SUCCESS: C:\Users\GuoZhe\.conda\envs\ptToonnx\Lib\site-packages\paddle\libs\warprnnt.dll (handle: 1727594496)
+[2025-12-23 10:23:04] Now trying: import paddle
+[2025-12-23 10:23:09] IMPORT paddle: SUCCESS
+[2025-12-23 10:23:09] paddle module reloaded OK
+[2025-12-23 10:23:09] === SUMMARY ===
+[2025-12-23 10:23:09] Tested DLLs count: 20
+[2025-12-23 10:23:09] Failed native nvidia DLLs: 0 (see log for details)
+[2025-12-23 10:23:09] Paddle extension binaries tested: 13
+[2025-12-23 10:23:09] Failed paddle extension loads: 1
+[2025-12-23 10:23:09]  PEXT FAIL: ('C:\\Users\\GuoZhe\\.conda\\envs\\ptToonnx\\Lib\\site-packages\\paddle\\base\\libpaddle.pyd', 'FAIL', 0)
+[2025-12-23 10:23:09] Import paddle success?: True
+[2025-12-23 10:23:09] === debug_paddle_load END ===
+[2025-12-23 10:23:09] Detailed log written to E:\programingCodeFile\DeepLearninng\homework1222\debug_paddle_load.log

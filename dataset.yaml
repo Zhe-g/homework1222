@@ -1,0 +1,21 @@
+# YOLOv8 数据集配置文件
+
+#  ├── train/ 
+#  │   ├── images/   
+#  │   └── labels/     
+#  ├── val/ 
+#  │   ├── images/   
+#  │   └── labels/
+path: E:/Dataset/carplate/Dataset # 数据集根目录
+train: train/images  # 训练集图片目录 (相对于 'path')
+val: val/images    # 验证集图片目录 (相对于 'path')
+test: test/images # 可选：测试集图片目录 (相对于 'path')
+
+# 类别信息
+nc:  1 # 类别数量
+names: ["1"]
+
+# names: ['p', '2', '1', '4', '7', '3', '5', '6', '8']
+#names: ['person_with_hw', 'person_with_h', 'person_with_w', 'person_without_wh']  # 类别名称列表，请确保顺序与标签文件中的类别索引一致
+
+# person_with_hw（有安全帽和工服），person_with_h（有安全帽没工服），person_with_w（有工服没有安全帽），person_without_wh
