@@ -58,41 +58,55 @@ class VideoThread(QThread):
 
     def run(self):
         self._run_flag = True
-        cap = cv2.VideoCapture(self.source)
-        
-        # 尝试设置摄像头分辨率
-        if isinstance(self.source, int):
-            cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+        cap = None
+        try:
+            cap = cv2.VideoCapture(self.source)
 
-        while self._run_flag:
-            ret, frame = cap.read()
-            if ret:
-                # 复制一份进行处理，避免修改原帧导致显示问题（如果需要保留原图）
-                # 这里直接在原图上画
-                
-                # 处理帧
-                start_time = time.time()
-                processed_img, results = backend.process_image_content(frame, self.ocr, self.model, self.fontC)
-                fps = 1.0 / (time.time() - start_time)
-                
-                # 在图像上绘制FPS
-                cv2.putText(processed_img, f"FPS: {fps:.1f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-                
-                if results:
-                    self.update_result_signal.emit(results)
-                
-                # 转换为QImage
-                rgb_image = cv2.cvtColor(processed_img, cv2.COLOR_BGR2RGB)
-                h, w, ch = rgb_image.shape
-                bytes_per_line = ch * w
-                convert_to_Qt_format = QImage(rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888)
-                # 缩放以适应显示区域，但保持比例
-                # p = convert_to_Qt_format.scaled(800, 600, Qt.KeepAspectRatio)
-                self.change_pixmap_signal.emit(convert_to_Qt_format)
-            else:
-                break
-        cap.release()
+            # 尝试设置摄像头分辨率
+            if isinstance(self.source, int):
+                cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+                cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+
+            while self._run_flag:
+                ret, frame = cap.read()
+                if ret:
+                    try:
+                        # 复制一份进行处理，避免修改原帧导致显示问题（如果需要保留原图）
+                        # 这里直接在原图上画
+
+                        # 处理帧
+                        start_time = time.time()
+                        processed_img, results = backend.process_image_content(frame, self.ocr, self.model, self.fontC)
+                        fps = 1.0 / (time.time() - start_time)
+
+                        # 在图像上绘制FPS
+                        cv2.putText(processed_img, f"FPS: {fps:.1f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+                        if results:
+                            self.update_result_signal.emit(results)
+
+                        # 转换为QImage - 使用copy确保数据独立
+                        rgb_image = cv2.cvtColor(processed_img, cv2.COLOR_BGR2RGB).copy()
+                        h, w, ch = rgb_image.shape
+                        bytes_per_line = ch * w
+                        convert_to_Qt_format = QImage(rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888)
+                        # 缩放以适应显示区域，但保持比例
+                        # p = convert_to_Qt_format.scaled(800, 600, Qt.KeepAspectRatio)
+                        self.change_pixmap_signal.emit(convert_to_Qt_format)
+                    except Exception as e:
+                        print(f"处理帧时出错: {e}")
+                        import traceback
+                        traceback.print_exc()
+                        continue
+                else:
+                    break
+        except Exception as e:
+            print(f"视频线程错误: {e}")
+            import traceback
+            traceback.print_exc()
+        finally:
+            if cap is not None:
+                cap.release()
 
     def stop(self):
         self._run_flag = False
@@ -248,29 +262,35 @@ class App(QMainWindow):
         fname, _ = QFileDialog.getOpenFileName(self, '选择图片', 'e:\\programingCodeFile\\DeepLearninng\\homework1222', "Image files (*.jpg *.gif *.png *.jpeg)")
         if fname:
             self.status_label.setText(f"正在处理: {os.path.basename(fname)}")
-            # 读取并处理
-            image = cv2.imread(fname)
-            if image is not None:
-                processed_img, results = backend.process_image_content(image, self.ocr, self.model, self.fontC)
-                
-                # 显示结果
-                rgb_image = cv2.cvtColor(processed_img, cv2.COLOR_BGR2RGB)
-                h, w, ch = rgb_image.shape
-                bytes_per_line = ch * w
-                qt_img = QImage(rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888)
-                self.update_image(qt_img)
-                
-                # 更新文本
-                self.result_text.append(f"图片: {os.path.basename(fname)}")
-                if results:
-                    self.result_text.append("\n".join(results))
+            try:
+                # 读取并处理
+                image = cv2.imread(fname)
+                if image is not None:
+                    processed_img, results = backend.process_image_content(image, self.ocr, self.model, self.fontC)
+
+                    # 显示结果 - 使用copy确保数据独立
+                    rgb_image = cv2.cvtColor(processed_img, cv2.COLOR_BGR2RGB).copy()
+                    h, w, ch = rgb_image.shape
+                    bytes_per_line = ch * w
+                    qt_img = QImage(rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888)
+                    self.update_image(qt_img)
+
+                    # 更新文本
+                    self.result_text.append(f"图片: {os.path.basename(fname)}")
+                    if results:
+                        self.result_text.append("\n".join(results))
+                    else:
+                        self.result_text.append("未检测到车牌")
+                    self.result_text.append("-" * 20)
+
+                    self.status_label.setText("处理完成")
                 else:
-                    self.result_text.append("未检测到车牌")
-                self.result_text.append("-" * 20)
-                
-                self.status_label.setText("处理完成")
-            else:
-                self.status_label.setText("无法读取图片")
+                    self.status_label.setText("无法读取图片")
+            except Exception as e:
+                print(f"处理图片时出错: {e}")
+                import traceback
+                traceback.print_exc()
+                self.status_label.setText(f"处理图片时出错: {e}")
 
     def open_video(self):
         self.stop_video()

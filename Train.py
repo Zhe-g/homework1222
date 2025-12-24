@@ -91,7 +91,7 @@ def main():
 
 #    - 图片文件夹 (train/val)
 #    - 标签文件夹 (train/val)，每个图片对应一个txt文件，每行格式: <class_id> <x_center_norm> <y_center_norm> <width_norm> <height_norm>
-# 最佳模型通常保存在 runs/detect/<project_name>/<run_name>/weights/best.pt。
+# 最佳模型通常保存在 runs/detect/<project_name>/<run_name>/weights/best_all.pt。
 #  使用 TensorBoard 查看训练过程中的指标: tensorboard --logdir runs/detect/<project_name>/<run_name>
 
 

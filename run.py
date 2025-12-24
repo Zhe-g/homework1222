@@ -1,5 +1,6 @@
 import os
 import warnings
+import threading
 
 # 🔥 🔥 🔥 必须在导入任何库之前设置环境变量，避免冲突
 os.environ['PADDLE_DISABLE_ONE_DNN'] = '1'
@@ -24,6 +25,9 @@ from pathlib import Path
 
 # 强制使用CPU
 torch.set_num_threads(1)
+
+# 全局线程锁，保护多线程使用模型
+model_lock = threading.Lock()
 
 
 def get_license_result(ocr, image):
@@ -148,8 +152,10 @@ def process_image_content(image, ocr, model, fontC):
     """
     license_results = []
     try:
-        # YOLOv8检测车牌
-        results = model(image, conf=0.25, iou=0.7, device='cpu')[0]
+        # 使用线程锁保护模型调用
+        with model_lock:
+            # YOLOv8检测车牌
+            results = model(image, conf=0.25, iou=0.7, device='cpu')[0]
 
         # 获取检测框坐标
         boxes = results.boxes
@@ -170,8 +176,9 @@ def process_image_content(image, ocr, model, fontC):
 
             # 车牌识别
             for i, each_img in enumerate(license_imgs):
-                # print(f"正在识别车牌区域 {i + 1}/{len(license_imgs)}...")
-                license_num, conf = get_license_result(ocr, each_img)
+                # 使用线程锁保护OCR调用
+                with model_lock:
+                    license_num, conf = get_license_result(ocr, each_img)
                 if license_num and license_num.strip():
                     license_results.append(f"{license_num} ({conf:.2f})")
                 else:
@@ -181,7 +188,7 @@ def process_image_content(image, ocr, model, fontC):
             # 注意：这里license_results包含置信度字符串，绘制时可能只需要车牌号
             # 为了简单，这里直接绘制完整字符串，或者只绘制车牌号
             draw_texts = [res.split(' ')[0] if '(' in res else res for res in license_results]
-            
+
             for text, box in zip(draw_texts, location_list):
                 image = tools.drawRectBox(image, box, text, fontC)
 
