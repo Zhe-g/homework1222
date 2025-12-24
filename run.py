@@ -6,7 +6,7 @@ import threading
 os.environ['PADDLE_DISABLE_ONE_DNN'] = '1'
 os.environ['FLAGS_use_mkldnn'] = '0'
 os.environ['CPU_NUM'] = '1'  # 限制CPU线程数，避免冲突
-os.environ['CUDA_VISIBLE_DEVICES'] = '' # 强制禁用GPU，防止冲突
+os.environ['CUDA_VISIBLE_DEVICES'] = '0' # 使用GPU
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'  # 避免OpenMP冲突
 os.environ['OMP_NUM_THREADS'] = '1'  # 限制OpenMP线程数
 
@@ -116,14 +116,14 @@ def initialize_models():
         cls_model_dir=cls_model_dir, # Reverted to old name
         rec_model_dir=rec_model_dir, # Reverted to old name
         # show_log=False,  # Removed as it causes error in init
-        # use_gpu=False,  # Removed as it causes error in init
+        device="gpu",  # 启用GPU加速
         # enable_mkldnn=False  # Removed as it causes error in init
     )
 
     # 加载YOLO模型
     model = YOLO(model_path, task='detect')
-    # 显式指定使用CPU
-    model.to('cpu')
+    # 显式指定使用GPU
+    model.to('cuda:0')
 
     return ocr, model
 
@@ -155,7 +155,7 @@ def process_image_content(image, ocr, model, fontC):
         # 使用线程锁保护模型调用
         with model_lock:
             # YOLOv8检测车牌
-            results = model(image, conf=0.25, iou=0.7, device='cpu')[0]
+            results = model(image, conf=0.25, iou=0.7, device='cuda:0')[0]
 
         # 获取检测框坐标
         boxes = results.boxes
