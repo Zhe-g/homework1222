@@ -155,7 +155,7 @@ def process_image_content(image, ocr, model, fontC):
         # 使用线程锁保护模型调用
         with model_lock:
             # YOLOv8检测车牌
-            results = model(image, conf=0.25, iou=0.7, device='cuda:0')[0]
+            results = model(image, conf=0.25, iou=0.7, device='cuda:0')[0] # 使用gpu进行识别
 
         # 获取检测框坐标
         boxes = results.boxes
@@ -186,7 +186,7 @@ def process_image_content(image, ocr, model, fontC):
 
             # 在原图上绘制结果
             # 注意：这里license_results包含置信度字符串，绘制时可能只需要车牌号
-            # 为了简单，这里直接绘制完整字符串，或者只绘制车牌号
+            # 这里直接绘制完整字符串，或者只绘制车牌号
             draw_texts = [res.split(' ')[0] if '(' in res else res for res in license_results]
 
             for text, box in zip(draw_texts, location_list):
