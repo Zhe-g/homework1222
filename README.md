@@ -67,7 +67,7 @@ homework1222/
 ├── detect_tools.py             # 检测与绘制工具函数
 ├── Train.py                    # 模型训练脚本
 ├── test.py                     # 模型测试脚本
-├── txtmaker.py                 # 标注文件生成工具
+├── txtmaker.py                 # 标注文件（yolotxt）转换器
 ├── dataset.yaml                # 数据集配置文件
 ├── yolov8n.pt                  # YOLOv8预训练模型
 ├── best_all.pt                 # 训练好的最佳模型（全类型车牌）
@@ -91,7 +91,7 @@ homework1222/
 ├── requirements_cpu.txt        # CPU版依赖
 └── README.md                   # 项目说明文档
 ```
-
+- 注：CCPD2020数据集的标签是图片名，故需使用txtmaker.py转换为yolo的txt格式
 ---
 
 ## 🚀 快速开始
