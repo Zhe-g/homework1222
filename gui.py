@@ -44,20 +44,23 @@ class VideoThread(QThread):
     """视频处理线程"""
     change_pixmap_signal = pyqtSignal(QImage)
     update_result_signal = pyqtSignal(list)
+    video_finished = pyqtSignal()  # 视频结束信号
 
     def __init__(self, ocr, model, fontC):
         super().__init__()
         self.ocr = ocr
         self.model = model
         self.fontC = fontC
-        self.source = None 
+        self.source = None
         self._run_flag = False
+        self._finished_emitted = False  # 防止重复发送信号
 
     def set_source(self, source):
         self.source = source
 
     def run(self):
         self._run_flag = True
+        self._finished_emitted = False
         cap = None
         try:
             cap = cv2.VideoCapture(self.source)
@@ -71,9 +74,6 @@ class VideoThread(QThread):
                 ret, frame = cap.read()
                 if ret:
                     try:
-                        # 复制一份进行处理，避免修改原帧导致显示问题（如果需要保留原图）
-                        # 这里直接在原图上画
-
                         # 处理帧
                         start_time = time.time()
                         processed_img, results = backend.process_image_content(frame, self.ocr, self.model, self.fontC)
@@ -90,8 +90,6 @@ class VideoThread(QThread):
                         h, w, ch = rgb_image.shape
                         bytes_per_line = ch * w
                         convert_to_Qt_format = QImage(rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888)
-                        # 缩放以适应显示区域，但保持比例
-                        # p = convert_to_Qt_format.scaled(800, 600, Qt.KeepAspectRatio)
                         self.change_pixmap_signal.emit(convert_to_Qt_format)
                     except Exception as e:
                         print(f"处理帧时出错: {e}")
@@ -107,10 +105,18 @@ class VideoThread(QThread):
         finally:
             if cap is not None:
                 cap.release()
+            # 发送视频结束信号（只发送一次）
+            if not self._finished_emitted:
+                self._finished_emitted = True
+                self.video_finished.emit()
 
     def stop(self):
+        """停止线程"""
         self._run_flag = False
-        self.wait()
+        # 使用超时等待，避免死锁
+        if self.isRunning():
+            # 非阻塞方式，最多等待3秒
+            self.wait(3000)
 
 class App(QMainWindow):
     def __init__(self):
@@ -121,11 +127,13 @@ class App(QMainWindow):
         self.width = 1200
         self.height = 800
         self.initUI()
-        
+
         self.ocr = None
         self.model = None
         self.fontC = None
-        
+        self.video_thread = None
+        self._is_running = False  # 跟踪视频是否正在运行
+
         # 启动模型加载
         self.status_label.setText("正在加载模型，请稍候...")
         self.disable_buttons()
@@ -133,8 +141,6 @@ class App(QMainWindow):
         self.init_thread.finished.connect(self.on_models_loaded)
         self.init_thread.error.connect(self.on_model_error)
         self.init_thread.start()
-        
-        self.video_thread = None
 
     def initUI(self):
         self.setWindowTitle(self.title)
@@ -223,11 +229,6 @@ class App(QMainWindow):
         self.fontC = fontC
         self.status_label.setText("模型加载完成！")
         self.enable_buttons()
-        
-        # 初始化视频线程
-        self.video_thread = VideoThread(self.ocr, self.model, self.fontC)
-        self.video_thread.change_pixmap_signal.connect(self.update_image)
-        self.video_thread.update_result_signal.connect(self.update_result)
 
     def on_model_error(self, error_msg):
         self.status_label.setText(f"模型加载失败:\n{error_msg}")
@@ -251,11 +252,42 @@ class App(QMainWindow):
             self.result_text.moveCursor(self.result_text.textCursor().End)
 
     def stop_video(self):
-        if self.video_thread and self.video_thread.isRunning():
+        """停止视频线程"""
+        if self.video_thread is not None:
+            print("正在停止视频线程...")
+            self._is_running = False
             self.video_thread.stop()
+
+            # 断开所有信号连接
+            try:
+                if self.video_thread:
+                    try:
+                        self.video_thread.change_pixmap_signal.disconnect()
+                    except:
+                        pass
+                    try:
+                        self.video_thread.update_result_signal.disconnect()
+                    except:
+                        pass
+                    try:
+                        self.video_thread.video_finished.disconnect()
+                    except:
+                        pass
+            except:
+                pass
+
+            # 删除线程对象
+            self.video_thread = None
             self.btn_stop.setEnabled(False)
             self.enable_buttons()
             self.status_label.setText("视频已停止")
+
+    def on_video_finished(self):
+        """视频播放完成时的回调"""
+        self._is_running = False
+        self.btn_stop.setEnabled(False)
+        self.enable_buttons()
+        self.status_label.setText("视频播放完成")
 
     def open_image(self):
         self.stop_video()
@@ -293,26 +325,53 @@ class App(QMainWindow):
                 self.status_label.setText(f"处理图片时出错: {e}")
 
     def open_video(self):
+        """打开视频文件"""
         self.stop_video()
+        # 稍微延迟，确保旧线程完全停止
+        QApplication.processEvents()
+
         fname, _ = QFileDialog.getOpenFileName(self, '选择视频', 'e:\\programingCodeFile\\DeepLearninng\\homework1222', "Video files (*.mp4 *.avi *.mkv)")
         if fname:
+            # 创建新的视频线程
+            self.video_thread = VideoThread(self.ocr, self.model, self.fontC)
+            self.video_thread.change_pixmap_signal.connect(self.update_image)
+            self.video_thread.update_result_signal.connect(self.update_result)
+            self.video_thread.video_finished.connect(self.on_video_finished)
+
             self.video_thread.set_source(fname)
+            self._is_running = True
             self.video_thread.start()
             self.disable_buttons()
             self.btn_stop.setEnabled(True)
             self.status_label.setText(f"正在播放视频: {os.path.basename(fname)}")
 
     def open_camera(self):
+        """打开摄像头"""
         self.stop_video()
+        # 稍微延迟，确保旧线程完全停止
+        QApplication.processEvents()
+
+        # 创建新的视频线程
+        self.video_thread = VideoThread(self.ocr, self.model, self.fontC)
+        self.video_thread.change_pixmap_signal.connect(self.update_image)
+        self.video_thread.update_result_signal.connect(self.update_result)
+        self.video_thread.video_finished.connect(self.on_video_finished)
+
         # 默认使用摄像头0
         self.video_thread.set_source(0)
+        self._is_running = True
         self.video_thread.start()
         self.disable_buttons()
         self.btn_stop.setEnabled(True)
         self.status_label.setText("正在使用摄像头")
 
     def closeEvent(self, event):
+        """窗口关闭事件"""
+        print("正在关闭窗口...")
         self.stop_video()
+        # 等待一段时间确保线程完全停止
+        import time
+        time.sleep(0.5)
         event.accept()
 
 if __name__ == '__main__':
