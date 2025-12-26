@@ -86,7 +86,7 @@ def get_license_result(ocr, image):
 def initialize_models():
     """初始化模型，处理路径和错误"""
     # 检查模型文件是否存在
-    model_path = r'E:\programingCodeFile\DeepLearninng\homework1222\result\yolov8n_carPlate\weights\best.pt'
+    model_path = r'E:\programingCodeFile\DeepLearninng\homework1222\result\yolov8n_carPlate\weights\best_all.pt'
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"YOLO模型文件不存在: {model_path}")
 
